@@ -1,0 +1,18 @@
+#KhanhNguyen9872
+name: Ubuntu-22.04
+
+jobs:
+  build:
+    name: Image Build
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install requires packages
+        run: |
+          sudo apt update -y
+          sudo apt install curl openssl -y
+          curl -L --max-redirs 15 --progress-bar "https://raw.githubusercontent.com/KhanhNguyen9872/ubuntu_on_github/main/install.sh" --output install.sh
+          bash ./install.sh
