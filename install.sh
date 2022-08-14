@@ -1,12 +1,12 @@
 #!/bin/bash
-sudo curl https://raw.githubusercontent.com/KhanhNguyen9872/ubuntu_on_github/main/config.txt > config.txt
+curl https://raw.githubusercontent.com/KhanhNguyen9872/ubuntu_on_github/main/config.txt > config.txt
 
 list=$(cat << EOF
 ngrok_authtoken
 ngrok_region
-username
 password
 EOF
+)
 
 while IFS= read -r var; do
     eval ${var}=$(cat ./config.txt | grep -w -a -m1 "${var}" | sed "s/:/ /g" | awk '{print $2}')
